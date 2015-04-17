@@ -23,7 +23,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "MantisIntegrations": "src/"
+            "MantisIntegrations\\": "src/"
         }
     }
 }
