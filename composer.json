@@ -1,0 +1,29 @@
+{
+    "name": "appsinet/mantis-integrations",
+    "type": "library",
+    "description": "Several tools and classes to integrate and work with Mantis Bug Tracker",
+    "homepage": "http://github.com/appsinet/mantis-integrations",
+    "keywords": ["mantisbt"],
+    "require": {
+        "php": ">=5.3.3",
+        "ext-soap": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "license": "GPL2",
+    "authors": [
+        {
+            "name": "Carles Mata",
+            "email": "info@appsinet.com",
+            "homepage": "http://seld.be",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "MantisIntegrations": "src/"
+        }
+    }
+}
