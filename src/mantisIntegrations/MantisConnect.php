@@ -2,25 +2,15 @@
 
 namespace MantisIntegrations;
 
-use MantisIntegrations\Model\ObjectRef;
 use MantisIntegrations\Model\AccountData;
 use MantisIntegrations\Model\UserData;
-use MantisIntegrations\Model\AttachmentData;
-use MantisIntegrations\Model\ProjectAttachmentData;
 use MantisIntegrations\Model\RelationshipData;
 use MantisIntegrations\Model\IssueNoteData;
 use MantisIntegrations\Model\IssueData;
-use MantisIntegrations\Model\HistoryData;
-use MantisIntegrations\Model\IssueHeaderData;
 use MantisIntegrations\Model\ProjectData;
 use MantisIntegrations\Model\ProjectVersionData;
-use MantisIntegrations\Model\FilterData;
-use MantisIntegrations\Model\CustomFieldDefinitionData;
-use MantisIntegrations\Model\CustomFieldLinkForProjectData;
-use MantisIntegrations\Model\CustomFieldValueForIssueData;
 use MantisIntegrations\Model\TagData;
 use MantisIntegrations\Model\TagDataSearchResult;
-use MantisIntegrations\Model\ProfileData;
 use MantisIntegrations\Model\ProfileDataSearchResult;
 
 class MantisConnect extends \SoapClient
@@ -54,11 +44,12 @@ class MantisConnect extends \SoapClient
 
     /**
      * @param array  $options A array of config values
-     * @param string $wsdl    The wsdl file to use
      * @access public
      */
-    public function __construct(array $options = array(), $wsdl = 'https://gears.aicrag.com/mantisbt/api/soap/mantisconnect.php?wsdl')
+    public function __construct(array $options = array())
     {
+        //TODO Set your Mantis SOAP API URL here
+        $wsdl = 'http://localhost/mantisbt/api/soap/mantisconnect.php?wsdl';
         foreach (self::$classmap as $key => $value) {
             if (!isset($options['classmap'][$key])) {
                 $options['classmap'][$key] = $value;
@@ -458,7 +449,9 @@ class MantisConnect extends \SoapClient
      */
     public function mc_issue_relationship_delete($username, $password, $issue_id, $relationship_id)
     {
-        return $this->__soapCall('mc_issue_relationship_delete', array($username, $password, $issue_id, $relationship_id));
+        $options = array($username, $password, $issue_id, $relationship_id);
+
+        return $this->__soapCall('mc_issue_relationship_delete', $options);
     }
 
     /**
@@ -475,7 +468,9 @@ class MantisConnect extends \SoapClient
      */
     public function mc_issue_attachment_add($username, $password, $issue_id, $name, $file_type, $content)
     {
-        return $this->__soapCall('mc_issue_attachment_add', array($username, $password, $issue_id, $name, $file_type, $content));
+        $options = array($username, $password, $issue_id, $name, $file_type, $content);
+
+        return $this->__soapCall('mc_issue_attachment_add', $options);
     }
 
     /**
@@ -564,7 +559,9 @@ class MantisConnect extends \SoapClient
     }
 
     /**
-     * Get the issues filtered by the specified user within the specified project. Supported types include "assigned", "monitored", "reported".  Pass "-1" for the per_page parameter to get all issues.  Use project id "0" for all projects.
+     * Get the issues filtered by the specified user within the specified project. Supported types include "assigned",
+     * "monitored", "reported".  Pass "-1" for the per_page parameter to get all issues.  Use project id "0"
+     * for all projects.
      *
      * @param  string         $username
      * @param  string         $password
@@ -576,13 +573,24 @@ class MantisConnect extends \SoapClient
      * @access public
      * @return IssueDataArray
      */
-    public function mc_project_get_issues_for_user($username, $password, $project_id, $filter_type, AccountData $target_user, $page_number, $per_page)
+    public function mc_project_get_issues_for_user(
+        $username,
+        $password,
+        $project_id,
+        $filter_type,
+        AccountData $target_user,
+        $page_number,
+        $per_page
+    )
     {
-        return $this->__soapCall('mc_project_get_issues_for_user', array($username, $password, $project_id, $filter_type, $target_user, $page_number, $per_page));
+        $options = array($username, $password, $project_id, $filter_type, $target_user, $page_number, $per_page);
+
+        return $this->__soapCall('mc_project_get_issues_for_user', $options);
     }
 
     /**
-     * Get the issues that match the specified project id and paging details. Pass "-1" for the per_page parameter to get all issues.
+     * Get the issues that match the specified project id and paging details.
+     * Pass "-1" for the per_page parameter to get all issues.
      *
      * @param  string         $username
      * @param  string         $password
@@ -594,11 +602,14 @@ class MantisConnect extends \SoapClient
      */
     public function mc_project_get_issues($username, $password, $project_id, $page_number, $per_page)
     {
-        return $this->__soapCall('mc_project_get_issues', array($username, $password, $project_id, $page_number, $per_page));
+        $options = array($username, $password, $project_id, $page_number, $per_page);
+
+        return $this->__soapCall('mc_project_get_issues', $options);
     }
 
     /**
-     * Get the issue headers that match the specified project id and paging details. Pass "-1" for the per_page parameter to get all issues.
+     * Get the issue headers that match the specified project id and paging details.
+     * Pass "-1" for the per_page parameter to get all issues.
      *
      * @param  string               $username
      * @param  string               $password
@@ -610,7 +621,9 @@ class MantisConnect extends \SoapClient
      */
     public function mc_project_get_issue_headers($username, $password, $project_id, $page_number, $per_page)
     {
-        return $this->__soapCall('mc_project_get_issue_headers', array($username, $password, $project_id, $page_number, $per_page));
+        $options = array($username, $password, $project_id, $page_number, $per_page);
+
+        return $this->__soapCall('mc_project_get_issue_headers', $options);
     }
 
     /**
@@ -682,7 +695,9 @@ class MantisConnect extends \SoapClient
      */
     public function mc_project_delete_category($username, $password, $project_id, $p_category_name)
     {
-        return $this->__soapCall('mc_project_delete_category', array($username, $password, $project_id, $p_category_name));
+        $options = array($username, $password, $project_id, $p_category_name);
+
+        return $this->__soapCall('mc_project_delete_category', $options);
     }
 
     /**
@@ -697,9 +712,18 @@ class MantisConnect extends \SoapClient
      * @access public
      * @return integer
      */
-    public function mc_project_rename_category_by_name($username, $password, $project_id, $p_category_name, $p_category_name_new, $p_assigned_to)
+    public function mc_project_rename_category_by_name(
+        $username,
+        $password,
+        $project_id,
+        $p_category_name,
+        $p_category_name_new,
+        $p_assigned_to
+    )
     {
-        return $this->__soapCall('mc_project_rename_category_by_name', array($username, $password, $project_id, $p_category_name, $p_category_name_new, $p_assigned_to));
+        $options = array($username, $password, $project_id, $p_category_name, $p_category_name_new, $p_assigned_to);
+
+        return $this->__soapCall('mc_project_rename_category_by_name', $options);
     }
 
     /**
@@ -843,9 +867,20 @@ class MantisConnect extends \SoapClient
      * @access public
      * @return integer
      */
-    public function mc_project_attachment_add($username, $password, $project_id, $name, $title, $description, $file_type, $content)
+    public function mc_project_attachment_add(
+        $username,
+        $password,
+        $project_id,
+        $name,
+        $title,
+        $description,
+        $file_type,
+        $content
+    )
     {
-        return $this->__soapCall('mc_project_attachment_add', array($username, $password, $project_id, $name, $title, $description, $file_type, $content));
+        $options = array($username, $password, $project_id, $name, $title, $description, $file_type, $content);
+
+        return $this->__soapCall('mc_project_attachment_add', $options);
     }
 
     /**
@@ -891,7 +926,8 @@ class MantisConnect extends \SoapClient
     }
 
     /**
-     * Get the issues that match the specified filter and paging details. Pass "-1" for the per_page parameter to get all issues.
+     * Get the issues that match the specified filter and paging details.
+     * Pass "-1" for the per_page parameter to get all issues.
      *
      * @param  string         $username
      * @param  string         $password
@@ -904,11 +940,14 @@ class MantisConnect extends \SoapClient
      */
     public function mc_filter_get_issues($username, $password, $project_id, $filter_id, $page_number, $per_page)
     {
-        return $this->__soapCall('mc_filter_get_issues', array($username, $password, $project_id, $filter_id, $page_number, $per_page));
+        $options = array($username, $password, $project_id, $filter_id, $page_number, $per_page);
+
+        return $this->__soapCall('mc_filter_get_issues', $options);
     }
 
     /**
-     * Get the issue headers that match the specified filter and paging details.  Pass "-1" for the per_page parameter to get all issues.
+     * Get the issue headers that match the specified filter and paging details.
+     * Pass "-1" for the per_page parameter to get all issues.
      *
      * @param  string               $username
      * @param  string               $password
@@ -921,7 +960,9 @@ class MantisConnect extends \SoapClient
      */
     public function mc_filter_get_issue_headers($username, $password, $project_id, $filter_id, $page_number, $per_page)
     {
-        return $this->__soapCall('mc_filter_get_issue_headers', array($username, $password, $project_id, $filter_id, $page_number, $per_page));
+        $options = array($username, $password, $project_id, $filter_id, $page_number, $per_page);
+
+        return $this->__soapCall('mc_filter_get_issue_headers', $options);
     }
 
     /**
