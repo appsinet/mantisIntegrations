@@ -2,7 +2,7 @@
     "name": "appsinet/mantis-integrations",
     "type": "library",
     "description": "Several tools and classes to integrate and work with Mantis Bug Tracker",
-    "homepage": "http://github.com/appsinet/mantis-integrations",
+    "homepage": "http://github.com/appsinet/mantisIntegrations",
     "keywords": ["mantisbt"],
     "require": {
         "php": ">=5.3.3",
