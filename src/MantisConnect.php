@@ -44,12 +44,14 @@ class MantisConnect extends \SoapClient
 
     /**
      * @param array  $options A array of config values
+     * @param string $wsdl    The wsdl file to use
      * @access public
      */
-    public function __construct(array $options = array())
+    public function __construct(
+        array $options = array(),
+        $wsdl = 'http://localhost/mantisbt/api/soap/mantisconnect.php?wsdl'
+    )
     {
-        //TODO Set your Mantis SOAP API URL here
-        $wsdl = 'http://localhost/mantisbt/api/soap/mantisconnect.php?wsdl';
         foreach (self::$classmap as $key => $value) {
             if (!isset($options['classmap'][$key])) {
                 $options['classmap'][$key] = $value;
