@@ -21,26 +21,26 @@ class MantisConnect extends \SoapClient
      * @access private
      */
     private static $classmap = array(
-      'ObjectRef' => '\ObjectRef',
-      'AccountData' => '\AccountData',
-      'UserData' => '\UserData',
-      'AttachmentData' => '\AttachmentData',
-      'ProjectAttachmentData' => '\ProjectAttachmentData',
-      'RelationshipData' => '\RelationshipData',
-      'IssueNoteData' => '\IssueNoteData',
-      'IssueData' => '\IssueData',
-      'HistoryData' => '\HistoryData',
-      'IssueHeaderData' => '\IssueHeaderData',
-      'ProjectData' => '\ProjectData',
-      'ProjectVersionData' => '\ProjectVersionData',
-      'FilterData' => '\FilterData',
-      'CustomFieldDefinitionData' => '\CustomFieldDefinitionData',
-      'CustomFieldLinkForProjectData' => '\CustomFieldLinkForProjectData',
-      'CustomFieldValueForIssueData' => '\CustomFieldValueForIssueData',
-      'TagData' => '\TagData',
-      'TagDataSearchResult' => '\TagDataSearchResult',
-      'ProfileData' => '\ProfileData',
-      'ProfileDataSearchResult' => '\ProfileDataSearchResult', );
+      'ObjectRef' => 'MantisIntegrations\Model\ObjectRef',
+      'AccountData' => 'MantisIntegrations\Model\AccountData',
+      'UserData' => 'MantisIntegrations\Model\UserData',
+      'AttachmentData' => 'MantisIntegrations\Model\AttachmentData',
+      'ProjectAttachmentData' => 'MantisIntegrations\Model\ProjectAttachmentData',
+      'RelationshipData' => 'MantisIntegrations\Model\RelationshipData',
+      'IssueNoteData' => 'MantisIntegrations\Model\IssueNoteData',
+      'IssueData' => 'MantisIntegrations\Model\IssueData',
+      'HistoryData' => 'MantisIntegrations\Model\HistoryData',
+      'IssueHeaderData' => 'MantisIntegrations\Model\IssueHeaderData',
+      'ProjectData' => 'MantisIntegrations\Model\ProjectData',
+      'ProjectVersionData' => 'MantisIntegrations\Model\ProjectVersionData',
+      'FilterData' => 'MantisIntegrations\Model\FilterData',
+      'CustomFieldDefinitionData' => 'MantisIntegrations\Model\CustomFieldDefinitionData',
+      'CustomFieldLinkForProjectData' => 'MantisIntegrations\Model\CustomFieldLinkForProjectData',
+      'CustomFieldValueForIssueData' => 'MantisIntegrations\Model\CustomFieldValueForIssueData',
+      'TagData' => 'MantisIntegrations\Model\TagData',
+      'TagDataSearchResult' => 'MantisIntegrations\Model\TagDataSearchResult',
+      'ProfileData' => 'MantisIntegrations\Model\ProfileData',
+      'ProfileDataSearchResult' => 'MantisIntegrations\Model\ProfileDataSearchResult', );
 
     /**
      * @param array  $options A array of config values
