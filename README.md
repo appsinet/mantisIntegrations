@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/appsinet/mantisIntegrations.png?label=ready&title=Ready)](http://waffle.io/appsinet/mantisIntegrations)
 # mantis-integrations
 Several tools and classes to integrate and work with Mantis Bug Tracker. This project is **very experimental**, so don't rely much on it.
 
